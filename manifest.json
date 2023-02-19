@@ -1,16 +1,28 @@
 {
-  "name": "GPT-3 Writer",
-  "description": "Write a blog post in the style of your favorite thinker anywhere!",
+  "name": "blog post to tweet thread",
+  "description": "give us your blog post, we'll transform it into a tweet thread",
   "version": "1.0",
   "manifest_version": 3,
   "icons": {
-    "48": "assets/48.png",
-    "72": "assets/72.png",
-    "96": "assets/96.png",
-    "144": "assets/144.png"
+    "16": "assets/favicon16x16.png",
+    "32": "assets/favicon32x32.png",
+    "64": "assets/favicon64x64.png",
+    "128": "assets/favicon128x128.png",
+    "256": "assets/favicon256x256.png"
   },
   "action": {
     "default_popup": "index.html",
-    "default_title": "Generate blog post"
-  }
+    "default_title": "generate tweet thread"
+  },
+  "background": {
+    "service_worker": "scripts/contextMenuServiceWorker.js"
+  },
+  "permissions": ["contextMenus", "tabs", "storage"],
+  "host_permissions": ["https://*/*"],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["scripts/content.js"]
+    }
+  ]
 }
